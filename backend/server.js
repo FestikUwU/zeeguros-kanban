@@ -17,7 +17,6 @@ db.serialize(() => {
       password TEXT
     )
   `);
-
     db.run(`
     CREATE TABLE IF NOT EXISTS tasks (
       id INTEGER PRIMARY KEY AUTOINCREMENT,

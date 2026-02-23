@@ -27,6 +27,7 @@
 
         <button (click)="moveTask(t,'doing')">→ Doing</button>
         <button (click)="moveTask(t,'done')">→ Done</button>
+        <button (click)="openEdit(t)">Edit</button>
         <button (click)="deleteTask(t)">Delete</button>
       </div>
     </div>
@@ -42,6 +43,7 @@
 
         <button (click)="moveTask(t,'todo')">← To Do</button>
         <button (click)="moveTask(t,'done')">→ Done</button>
+        <button (click)="openEdit(t)">Edit</button>
         <button (click)="deleteTask(t)">Delete</button>
       </div>
     </div>
@@ -57,8 +59,21 @@
 
         <button (click)="moveTask(t,'todo')">← To Do</button>
         <button (click)="moveTask(t,'doing')">← Doing</button>
+        <button (click)="openEdit(t)">Edit</button>
         <button (click)="deleteTask(t)">Delete</button>
       </div>
+    </div>
+  </div>
+
+  <div class="modal" *ngIf="editingTask">
+    <div class="modal-box">
+      <h3>Edit Task</h3>
+
+      <input [(ngModel)]="editTitle" placeholder="Title">
+      <input [(ngModel)]="editDesc" placeholder="Description">
+
+      <button (click)="saveEdit()">Save</button>
+      <button (click)="cancelEdit()">Cancel</button>
     </div>
   </div>
 

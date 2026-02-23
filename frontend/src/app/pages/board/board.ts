@@ -7,7 +7,8 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-board',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './board.html'
+  templateUrl: './board.html',
+  styleUrls: ['./board.css']
 })
 export class BoardComponent {
 
@@ -59,4 +60,31 @@ export class BoardComponent {
       t.title.toLowerCase().includes(this.filter.toLowerCase())
     );
   }
+
+  editingTask:any = null;
+  editTitle = '';
+  editDesc = '';
+
+  openEdit(task:any){
+    this.editingTask = task;
+    this.editTitle = task.title;
+    this.editDesc = task.description;
+  }
+
+  saveEdit(){
+    this.api.updateTask(this.editingTask.id,{
+      ...this.editingTask,
+      title:this.editTitle,
+      description:this.editDesc
+    }).subscribe(()=>{
+      this.editingTask = null;
+      this.loadTasks();
+    });
+  }
+
+  cancelEdit(){
+    this.editingTask = null;
+  }
+
+
 }
