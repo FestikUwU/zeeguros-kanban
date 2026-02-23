@@ -1,0 +1,65 @@
+<h2>Create Task</h2>
+
+<input [(ngModel)]="newTitle" placeholder="Title">
+<input [(ngModel)]="newDesc" placeholder="Description">
+
+<select [(ngModel)]="newStatus">
+  <option value="todo">To Do</option>
+  <option value="doing">Doing</option>
+  <option value="done">Done</option>
+</select>
+
+<button (click)="createTask()">Add</button>
+
+<hr>
+
+<input [(ngModel)]="filter" placeholder="Search tasks">
+
+<div style="display:flex; gap:30px; flex-wrap:wrap">
+
+  <!-- TO DO -->
+  <div style="min-width:200px">
+    <h2>To Do</h2>
+    <div *ngFor="let t of filteredTasks()">
+      <div *ngIf="t.status==='todo'" style="border:1px solid gray; padding:8px; margin:5px">
+        <b>{{t.title}}</b><br>
+        {{t.description}}<br>
+
+        <button (click)="moveTask(t,'doing')">→ Doing</button>
+        <button (click)="moveTask(t,'done')">→ Done</button>
+        <button (click)="deleteTask(t)">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOING -->
+  <div style="min-width:200px">
+    <h2>Doing</h2>
+    <div *ngFor="let t of filteredTasks()">
+      <div *ngIf="t.status==='doing'" style="border:1px solid gray; padding:8px; margin:5px">
+        <b>{{t.title}}</b><br>
+        {{t.description}}<br>
+
+        <button (click)="moveTask(t,'todo')">← To Do</button>
+        <button (click)="moveTask(t,'done')">→ Done</button>
+        <button (click)="deleteTask(t)">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DONE -->
+  <div style="min-width:200px">
+    <h2>Done</h2>
+    <div *ngFor="let t of filteredTasks()">
+      <div *ngIf="t.status==='done'" style="border:1px solid gray; padding:8px; margin:5px">
+        <b>{{t.title}}</b><br>
+        {{t.description}}<br>
+
+        <button (click)="moveTask(t,'todo')">← To Do</button>
+        <button (click)="moveTask(t,'doing')">← Doing</button>
+        <button (click)="deleteTask(t)">Delete</button>
+      </div>
+    </div>
+  </div>
+
+</div>
