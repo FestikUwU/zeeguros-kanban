@@ -15,6 +15,18 @@ Credenciales:
 Email: [test@test.com](mailto:test@test.com)
 Password: 1234
 
+## ⚠ Nota importante
+
+El backend está desplegado en Render con plan gratuito.
+Puede tardar 20-40 segundos en responder la primera vez.
+
+Si la app no carga, abre primero:
+
+https://zeeguros-kanban-2.onrender.com/tasks
+
+Después vuelve a la app frontend.
+
+
 ---
 
 ## 🛠 Tecnologías
